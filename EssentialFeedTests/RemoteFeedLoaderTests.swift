@@ -7,7 +7,10 @@
 
 import XCTest
 
+
 class RemoteFeedLoader {
+    // RemoteFeedLoader does not need to locate or instantiate HTTPClient instance.
+    // Instead, we make our code more modular by injecting as a dependency.
     let client: HTTPClient
     let url: URL
     
