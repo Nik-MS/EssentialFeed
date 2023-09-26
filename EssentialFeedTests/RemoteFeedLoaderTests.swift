@@ -6,27 +6,7 @@
 //
 
 import XCTest
-
-
-class RemoteFeedLoader {
-    // RemoteFeedLoader does not need to locate or instantiate HTTPClient instance.
-    // Instead, we make our code more modular by injecting as a dependency.
-    let client: HTTPClient
-    let url: URL
-    
-    init(url: URL, client: HTTPClient) {
-        self.url = url
-        self.client = client
-    }
-    
-    func load() {
-        client.get(from: url)
-    }
-}
-
-protocol HTTPClient {
-    func get(from url: URL)
-}
+@testable import EssentialFeed
 
 final class RemoteFeedLoaderTests: XCTestCase {
     func test_init_dotNotRequestDataFromURL() {
