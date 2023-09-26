@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol HTTPClient {
-    func get(from url: URL)
+    func get(from url: URL, completion: @escaping (Error) -> Void)
 }
 
 public final class RemoteFeedLoader {
@@ -17,12 +17,18 @@ public final class RemoteFeedLoader {
     // Instead, we make our code more modular by injecting as a dependency.
     private let client: HTTPClient
     
+    public enum Error: Swift.Error {
+        case connectivity
+    }
+    
     public init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
     }
     
-    public func load() {
-        client.get(from: url)
+    public func load(completion: @escaping (Error) -> Void = { _ in } ) {
+        client.get(from: url) { error in
+            completion(.connectivity)
+        }
     }
 }
