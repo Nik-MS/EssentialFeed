@@ -49,19 +49,20 @@ final class RemoteFeedLoaderTests: XCTestCase {
         XCTAssertEqual(capturedErrors, [.connectivity])
     }
     
+    // When we tell the sut to load.
+    // Completion block gets stored by the spy
+    // Spy gets the completion block and executes it when we pass in an error.
+    
     func test_load_deliversErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
-        var capturedErrors = [RemoteFeedLoader.Error]()
+        let samples = [199, 201, 300, 400, 500]
         
-        // When we tell the sut to load.
-        // Completion block gets stored by the spy
-        // Spy gets the completion block and executes it when we pass in an error.
-        sut.load() { capturedErrors.append($0) }
-        
-        client.complete(withStatusCode: 400)
-        
-        // Assert only one error
-        XCTAssertEqual(capturedErrors, [.invalidData])
+        samples.enumerated().forEach { index, code in
+            var capturedErrors = [RemoteFeedLoader.Error]()
+            sut.load() { capturedErrors.append($0) }
+            client.complete(withStatusCode: code, at: index)
+            XCTAssertEqual(capturedErrors, [.invalidData])
+        }
     }
     
     // MARK: - Helpers
