@@ -59,18 +59,19 @@ final class RemoteFeedLoaderTests: XCTestCase {
     }
     
     private class HTTPClientSpy: HTTPClient {
-        var requestedURLs = [URL]()
-        // Spy will collect completion handlers that RemoteFeedLoader passes in.
-        // We can call these completions within our tests.
-        var completions = [(Error) -> Void]()
+        var requestedURLs: [URL] {
+            messages.map { $0.url }
+        }
+        
+        // message passes = invoking behavior.
+        private var messages = [(url: URL, completion: (Error) -> Void)]()
         
         func get(from url: URL, completion: @escaping (Error) -> Void) {
-            completions.append(completion)
-            requestedURLs.append(url)
+            messages.append((url, completion))
         }
         
         func complete(with error: Error, at index: Int = 0) {
-            completions[index](error)
+            messages[index].completion(error)
         }
     }
 }
