@@ -43,7 +43,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         // Spy gets the completion block and executes it when we pass in an error.
         sut.load() { capturedErrors.append($0) }
         let clientError = NSError(domain: "Test", code: 0)
-        client.completions[0](clientError)
+        client.complete(with: clientError)
         
         // Assert only one error
         XCTAssertEqual(capturedErrors, [.connectivity])
@@ -67,6 +67,10 @@ final class RemoteFeedLoaderTests: XCTestCase {
         func get(from url: URL, completion: @escaping (Error) -> Void) {
             completions.append(completion)
             requestedURLs.append(url)
+        }
+        
+        func complete(with error: Error, at index: Int = 0) {
+            completions[index](error)
         }
     }
 }
