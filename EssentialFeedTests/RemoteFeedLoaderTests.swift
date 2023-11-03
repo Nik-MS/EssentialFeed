@@ -62,7 +62,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         }
     }
     
-    func test_load_deliversErrorOnNon200HTTPResponseWithInvalidData() {
+    func test_load_deliversErrorOnNon200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWith: .failure(.invalidData), when: {
