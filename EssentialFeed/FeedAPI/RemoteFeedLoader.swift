@@ -54,5 +54,22 @@ public final class RemoteFeedLoader {
 }
 
 private struct Root: Decodable {
-    let items: [FeedItem]
+    let items: [Item]
+}
+
+// This struct is the same as a FeedItem, except that
+// `imageURL` is now `image`. This is to keep decoding logic isolated.
+// RemoteFeedLoader expects a JSON property with name, `imageURL`. But what if
+// another module expects the image property to be named `profilePic`?
+
+// An internal model for the internal API module.
+private struct Item: Decodable {
+    let id: UUID
+    let description: String?
+    let location: String?
+    let image: URL
+    
+    var item: FeedItem {
+        FeedItem(id: id, description: description, location: location, imageURL: image)
+    }
 }
