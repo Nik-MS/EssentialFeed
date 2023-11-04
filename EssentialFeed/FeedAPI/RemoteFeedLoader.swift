@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class RemoteFeedLoader {
+public final class RemoteFeedLoader: FeedLoader {
     private let url: URL
     // RemoteFeedLoader does not need to locate or instantiate HTTPClient instance.
     // Instead, we make our code more modular by injecting as a dependency.
