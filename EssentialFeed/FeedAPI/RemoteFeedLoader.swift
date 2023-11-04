@@ -13,15 +13,12 @@ public final class RemoteFeedLoader {
     // Instead, we make our code more modular by injecting as a dependency.
     private let client: HTTPClient
     
-    public enum Result: Equatable {
-        case success([FeedItem])
-        case failure(Error)
-    }
-    
     public enum Error: Swift.Error {
         case connectivity
         case invalidData
     }
+    
+    public typealias Result = LoadFeedResult<Error>
     
     public init(url: URL, client: HTTPClient) {
         self.url = url
