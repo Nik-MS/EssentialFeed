@@ -9,14 +9,6 @@ import Foundation
 @testable import EssentialFeed
 import XCTest
 
-protocol HTTPSession {
-    func dataTask(with url: URL, completionHandler: @escaping(Data?, URLResponse?, Error?) -> Void) -> HTTPSessionTask
-}
-
-protocol HTTPSessionTask {
-    func resume()
-}
-
 class URLSessionHTTPClient {
     private let session: URLSession
     
