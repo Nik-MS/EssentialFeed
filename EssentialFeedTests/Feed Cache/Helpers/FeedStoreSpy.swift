@@ -18,6 +18,7 @@ class FeedStoreSpy: FeedStore {
     enum ReceivedMessage: Equatable {
         case deleteCachedFeed
         case insert([LocalFeedImage], Date)
+        case retrieve
     }
     
     // Helps us track order dependency on what order functions should be called.
@@ -50,5 +51,9 @@ class FeedStoreSpy: FeedStore {
     
     func completeInsertionSuccessfully(at index: Int = 0) {
         insertionCompletions[index](nil)
+    }
+    
+    func retrieve() {
+        receivedMessages.append(.retrieve)
     }
 }
