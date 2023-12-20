@@ -1,5 +1,5 @@
 //
-//  CodableFeedStore.swift
+//  CodableFeedStoreTests.swift
 //  EssentialFeedTests
 //
 //  Created by Nikhil Menon on 12/19/23.
