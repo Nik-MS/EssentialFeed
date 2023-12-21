@@ -36,10 +36,6 @@ extension FeedStoreSpecs where Self: XCTestCase {
         expect(sut, toRetrieveTwice: .found(feed: feed, timestamp: timestamp), file: file, line: line)
     }
     
-    func assertThatRetrieveDeliversFailureOnRetrievalError(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
-        expect(sut, toRetrieve: .failure(anyNSError()))
-    }
-    
     
     @discardableResult
     func insert(_ cache: (feed: [LocalFeedImage], timestamp: Date), to sut: FeedStore) -> Error? {
