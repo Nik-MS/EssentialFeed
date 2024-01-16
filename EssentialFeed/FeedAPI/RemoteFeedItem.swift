@@ -13,9 +13,9 @@ import Foundation
 // another module expects the image property to be named `profilePic`?
 
 // An internal model for the internal API module.
-internal struct RemoteFeedItem: Decodable {
-    internal let id: UUID
-    internal let description: String?
-    internal let location: String?
-    internal let image: URL
+struct RemoteFeedItem: Decodable {
+    let id: UUID
+    let description: String?
+    let location: String?
+    let image: URL
 }
