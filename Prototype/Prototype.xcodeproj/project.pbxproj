@@ -12,6 +12,7 @@
 		EACF296A2B58131C00A95B06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EACF29682B58131C00A95B06 /* Main.storyboard */; };
 		EACF296C2B58131D00A95B06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EACF296B2B58131D00A95B06 /* Assets.xcassets */; };
 		EACF296F2B58131D00A95B06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EACF296D2B58131D00A95B06 /* LaunchScreen.storyboard */; };
+		EACF29772B581A1800A95B06 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACF29762B581A1800A95B06 /* FeedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		EACF296B2B58131D00A95B06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EACF296E2B58131D00A95B06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EACF29702B58131D00A95B06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EACF29762B581A1800A95B06 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				EACF29622B58131C00A95B06 /* AppDelegate.swift */,
 				EACF29642B58131C00A95B06 /* SceneDelegate.swift */,
+				EACF29762B581A1800A95B06 /* FeedViewController.swift */,
 				EACF29682B58131C00A95B06 /* Main.storyboard */,
 				EACF296B2B58131D00A95B06 /* Assets.xcassets */,
 				EACF296D2B58131D00A95B06 /* LaunchScreen.storyboard */,
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EACF29632B58131C00A95B06 /* AppDelegate.swift in Sources */,
+				EACF29772B581A1800A95B06 /* FeedViewController.swift in Sources */,
 				EACF29652B58131C00A95B06 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
