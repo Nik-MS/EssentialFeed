@@ -108,6 +108,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="descriptionLabel" destination="V5b-Zj-Zet" id="OYa-wi-EF6"/>
+                                    <outlet property="feedImageContainer" destination="0p1-0U-COv" id="7Bz-Ei-q3L"/>
                                     <outlet property="feedImageView" destination="fpH-aa-PSz" id="RUC-UE-3Ye"/>
                                     <outlet property="locationContainer" destination="PMN-xW-bwm" id="lBq-F1-VFj"/>
                                     <outlet property="locationLabel" destination="Ioy-yX-Vha" id="hag-Vq-3cv"/>
@@ -120,6 +121,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="EKW-X2-Xxv"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Ucx-1r-tnD">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refresh" destination="LCv-6b-L4g" eventType="valueChanged" id="0MX-QH-jSF"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jOf-jV-Fgk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

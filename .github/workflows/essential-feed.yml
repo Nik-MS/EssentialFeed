@@ -18,9 +18,8 @@ jobs:
           xcode-version: '15.0.1'
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Test
-        env:
-          scheme: CI
-        run: |
+      - name: Test CI MacOS
+        run:
           xcodebuild clean build test -project EssentialFeed/EssentialFeed.xcodeproj -scheme "CI_macOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-          xcodebuild clean build test -project EssentialFeed/EssentialFeed.xcodeproj -scheme "CI_iOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+      - name: Test CI iOS
+        run: xcodebuild clean build test -project EssentialFeed/EssentialFeed.xcodeproj -scheme CI_iOS -destination 'platform=iOS Simulator,name=iPhone 15 Pro Max'
