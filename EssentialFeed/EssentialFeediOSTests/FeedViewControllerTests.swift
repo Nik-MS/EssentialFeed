@@ -15,32 +15,32 @@ final class FeedViewControllerTests: XCTestCase {
     func test_loadFeedActions_requestFeedFromLoader() {
         let (sut, loader) = makeSUT()
         
-        XCTAssertEqual(loader.loadCallCount, 0)
+        XCTAssertEqual(loader.loadCallCount, 0, "Expect no loading request when view is initialized.")
         
         sut.loadViewIfNeeded()
-        XCTAssertEqual(loader.loadCallCount, 1)
+        XCTAssertEqual(loader.loadCallCount, 1, "Expected a loading request once view is loaded.")
         
         sut.simulateUserInitiatedFeedReload()
-        XCTAssertEqual(loader.loadCallCount, 2)
+        XCTAssertEqual(loader.loadCallCount, 2, "Expected another loading request once user initiated a reload.")
         
         sut.simulateUserInitiatedFeedReload()
-        XCTAssertEqual(loader.loadCallCount, 3)
+        XCTAssertEqual(loader.loadCallCount, 3, "Expected yet another loading request once user initiated another reload.")
     }
     
     func test_loadingFeedIndicator_isVisibleWhileLoadingFeed() {
         let (sut, loader) = makeSUT()
         
         sut.simulateAppearance()
-        XCTAssertTrue(sut.isShowingLoadingIndicator)
+        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator once view is loaded")
         
         loader.completeFeedLoading(at: 0)
-        XCTAssertFalse(sut.isShowingLoadingIndicator)
+        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once loading complete successfully")
         
         sut.simulateUserInitiatedFeedReload()
-        XCTAssertTrue(sut.isShowingLoadingIndicator)
+        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected laoding indicator once user initiated a reload.")
         
         loader.completeFeedLoadingWithError(at: 1)
-        XCTAssertFalse(sut.isShowingLoadingIndicator)
+        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once user initiated loading is completed with error")
     }
     
     func test_loadFeedCompletion_rendersSuccessfullyLoadedFeed() {
