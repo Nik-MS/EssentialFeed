@@ -329,7 +329,7 @@ private extension UIRefreshControl {
     }
 }
 
-private extension UITableViewController {
+private extension FeedViewController {
     func feedImageView(at index: Int) -> UITableViewCell? {
         let ds = tableView.dataSource
         let indexPath = IndexPath(row: index, section: feedImagesSection)
@@ -396,7 +396,8 @@ private extension UITableViewController {
             }
         }
         
-        self.refreshControl = fakeRefreshControl
+        self.refreshController?.view = fakeRefreshControl
+        self.refreshControl = self.refreshController?.view
     }
 }
 
