@@ -54,7 +54,7 @@ public class FeedViewController: UITableViewController, UITableViewDataSourcePre
     
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { indexPath in
-            _ = cellController(forRowAt: indexPath).preload()
+            cellController(forRowAt: indexPath).preload()
         }
     }
     
