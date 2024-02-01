@@ -10,6 +10,7 @@ import UIKit
 import EssentialFeed
 
 final class FeedImageViewModel {
+    
     private var task: FeedImageDataLoaderTask?
     private let model: FeedImage
     private let imageLoader: FeedImageDataLoader
@@ -31,36 +32,30 @@ final class FeedImageViewModel {
         return location != nil
     }
     
-    enum LoadingState {
-        case loading
-        case loaded(UIImage)
-        case failed
-    }
-    
     var onImageLoad: ((UIImage) -> Void)?
-    var onLoadingStateChange: ((LoadingState) -> Void)?
+    var onImageLoadingStateChange: ((Bool) -> Void)?
+    var onShouldRetryImageLoadStateChange: ((Bool) -> Void)?
     
-    func loadImage() {
-        onLoadingStateChange?(.loading)
+    func loadImageData() {
+        onImageLoadingStateChange?(true)
+        onShouldRetryImageLoadStateChange?(false)
         task = imageLoader.loadImageData(from: model.url) { [weak self] result in
             self?.handle(result)
         }
     }
     
-    func preload() {
-        loadImage()
-    }
-    
-    func cancelLoad() {
-        task?.cancel()
-        task = nil
-    }
-    
     private func handle(_ result: FeedImageDataLoader.Result) {
         if let image = (try? result.get()).flatMap(UIImage.init) {
-            onLoadingStateChange?(.loaded(image))
+            onImageLoad?(image)
         } else {
-            onLoadingStateChange?(.failed)
+            onShouldRetryImageLoadStateChange?(true)
         }
+        
+        onImageLoadingStateChange?(false)
+    }
+    
+    func cancelImageDataLoad() {
+        task?.cancel()
+        task = nil
     }
 }
