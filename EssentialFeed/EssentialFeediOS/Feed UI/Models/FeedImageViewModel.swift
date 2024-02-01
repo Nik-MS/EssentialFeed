@@ -10,6 +10,7 @@ import UIKit
 import EssentialFeed
 
 final class FeedImageViewModel {
+    typealias Observer<T> = (T) -> Void
     
     private var task: FeedImageDataLoaderTask?
     private let model: FeedImage
@@ -32,9 +33,9 @@ final class FeedImageViewModel {
         return location != nil
     }
     
-    var onImageLoad: ((UIImage) -> Void)?
-    var onImageLoadingStateChange: ((Bool) -> Void)?
-    var onShouldRetryImageLoadStateChange: ((Bool) -> Void)?
+    var onImageLoad: Observer<UIImage>?
+    var onImageLoadingStateChange: Observer<Bool>?
+    var onShouldRetryImageLoadStateChange: Observer<Bool>?
     
     func loadImageData() {
         onImageLoadingStateChange?(true)
