@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import EssentialFeed
 
 public class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching {
     public var refreshController: FeedRefreshViewController?
@@ -54,7 +53,7 @@ public class FeedViewController: UITableViewController, UITableViewDataSourcePre
     
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { indexPath in
-            _ = cellController(forRowAt: indexPath).preload()
+            cellController(forRowAt: indexPath).preload()
         }
     }
     
