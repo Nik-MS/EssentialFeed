@@ -320,7 +320,7 @@
 		EA66D0652B69340A002B11ED /* Feed UI */ = {
 			isa = PBXGroup;
 			children = (
-				EAE70DE02B6B2A6E0075F873 /* Models */,
+				EAE70DE02B6B2A6E0075F873 /* Feed Presentation */,
 				EA66D06E2B693F6B002B11ED /* Composers */,
 				EA66D0672B693418002B11ED /* Views */,
 				EA66D0662B693413002B11ED /* Controllers */,
@@ -409,13 +409,13 @@
 			path = EssentialFeediOSTests;
 			sourceTree = "<group>";
 		};
-		EAE70DE02B6B2A6E0075F873 /* Models */ = {
+		EAE70DE02B6B2A6E0075F873 /* Feed Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				EAE70DE12B6B2A8C0075F873 /* FeedViewModel.swift */,
 				EAE70DE32B6B483A0075F873 /* FeedImageViewModel.swift */,
 			);
-			path = Models;
+			path = "Feed Presentation";
 			sourceTree = "<group>";
 		};
 		EAE79C552AA40A98009585E1 = {
