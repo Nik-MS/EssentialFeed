@@ -123,6 +123,7 @@
                         <connections>
                             <outlet property="dataSource" destination="xta-GE-8zv" id="TZm-WB-JP6"/>
                             <outlet property="delegate" destination="xta-GE-8zv" id="pPC-2G-vkv"/>
+                            <outlet property="prefetchDataSource" destination="xta-GE-8zv" id="DmQ-h3-vKL"/>
                         </connections>
                     </tableView>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="rDK-Ax-8Ut">
