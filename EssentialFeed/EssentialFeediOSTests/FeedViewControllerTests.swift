@@ -396,8 +396,8 @@ private extension FeedViewController {
             }
         }
         
-        self.refreshController?.view = fakeRefreshControl
-        self.refreshControl = self.refreshController?.view
+        self.refreshControl = fakeRefreshControl
+        self.refreshControl = self.refreshControl
     }
 }
 
