@@ -1,5 +1,5 @@
 //
-//  FeedViewControllerTests+FakeRefreshControl.swift
+//  FeedUIIntegrationTests+FakeRefreshControl.swift
 //  EssentialFeediOSTests
 //
 //  Created by Nikhil Menon on 2/13/24.
