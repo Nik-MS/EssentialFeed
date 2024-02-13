@@ -740,6 +740,7 @@
 				en,
 				Base,
 				"pt-BR",
+				el,
 			);
 			mainGroup = EAE79C552AA40A98009585E1;
 			productRefGroup = EAE79C602AA40A98009585E1 /* Products */;
