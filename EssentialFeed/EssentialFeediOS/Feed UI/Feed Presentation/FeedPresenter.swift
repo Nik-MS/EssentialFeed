@@ -20,6 +20,8 @@ final class FeedPresenter {
     private let feedView: FeedView
     private let loadingView: FeedLoadingView
     
+    static var title: String { NSLocalizedString("FEED_VIEW_TITLE", comment: "Title for the feed view") }
+    
     init(feedView: FeedView, loadingView: FeedLoadingView) {
         self.feedView = feedView
         self.loadingView = loadingView
