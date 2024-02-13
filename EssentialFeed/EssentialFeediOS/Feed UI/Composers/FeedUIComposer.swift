@@ -19,7 +19,7 @@ public final class FeedUIComposer {
         // Okay to force unwrap because it's a developer error. This would be covered in the FeedViewController tests as well.
         let feedController = storyboard.instantiateInitialViewController() as! FeedViewController
         feedController.delegate = presentationAdapter
-        
+        feedController.title = FeedPresenter.title
         let proxyView = WeakRefVirtualProxy(feedController)
         let presenter = FeedPresenter(
             feedView: FeedViewAdapter(controller: feedController, imageLoader: imageLoader),
