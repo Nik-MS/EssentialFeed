@@ -57,7 +57,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         
         samples.enumerated().forEach { index, code in
             expect(sut, toCompleteWith: failure(.invalidData), when: {
-                client.complete(withStatusCode: code, at: index)
+                client.complete(withStatusCode: code, data: anyData(), at: index)
             })
         }
     }
@@ -90,7 +90,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         
         let itemsJSON = makeItemsJSON([item1.json, item2.json])
         let items = [item1.model, item2.model]
-         
+        
         expect(sut, toCompleteWith: .success(items)) {
             client.complete(withStatusCode: 200, data: itemsJSON)
         }
@@ -161,27 +161,5 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         ].compactMapValues({ $0 })
         
         return (item, itemJson)
-    }
-    
-    private class HTTPClientSpy: HTTPClient {
-        var requestedURLs: [URL] {
-            messages.map { $0.url }
-        }
-        
-        // message passes = invoking behavior.
-        private var messages = [(url: URL, completion: (HTTPClient.Result) -> Void)]()
-        
-        func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) {
-            messages.append((url, completion))
-        }
-        
-        func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(.failure(error))
-        }
-        
-        func complete(withStatusCode code: Int, data: Data = Data(), at index: Int = 0) {
-            let response = HTTPURLResponse(url: requestedURLs[index], statusCode: code, httpVersion: nil, headerFields: nil)!
-            messages[index].completion(.success(((data, response))))
-        }
     }
 }
