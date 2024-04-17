@@ -35,17 +35,17 @@ class LoadFeedImageDataFromCacheUseCaseTests: XCTestCase {
     }
     
     func test_loadImageDataFromURL_deliversNotFoundErrorOnNotFound() {
-            let (sut, store) = makeSUT()
-
-            expect(sut, toCompleteWith: notFound(), when: {
-                store.complete(with: .none)
-            })
-        }
+        let (sut, store) = makeSUT()
+        
+        expect(sut, toCompleteWith: notFound(), when: {
+            store.complete(with: .none)
+        })
+    }
     
     func test_loadImageDataFromURL_deliversStoredDataOnFoundData() {
         let (sut, store) = makeSUT()
         let foundData = anyData()
-
+        
         expect(sut, toCompleteWith: .success(foundData), when: {
             store.complete(with: foundData)
         })
@@ -54,29 +54,19 @@ class LoadFeedImageDataFromCacheUseCaseTests: XCTestCase {
         func test_loadImageDataFromURL_doesNotDeliverResultAfterCancellingTask() {
             let (sut, store) = makeSUT()
             let foundData = anyData()
-
+            
             var received = [FeedImageDataLoader.Result]()
             let task = sut.loadImageData(from: anyURL()) { received.append($0) }
             task.cancel()
-
+            
             store.complete(with: foundData)
             store.complete(with: .none)
             store.complete(with: anyNSError())
-
+            
             XCTAssertTrue(received.isEmpty, "Expected no received results after cancelling task")
         }
-        
-        func test_saveImageDataForURL_requestsImageDataInsertionForURL() {
-                let (sut, store) = makeSUT()
-                let url = anyURL()
-                let data = anyData()
-
-                sut.save(data, for: url) { _ in }
-
-                XCTAssertEqual(store.receivedMessages, [.insert(data: data, for: url)])
-            }
     }
-
+    
     // MARK: - Helpers
     
     private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: LocalFeedImageDataLoader, store: FeedImageDataStoreSpy) {
