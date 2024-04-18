@@ -49,22 +49,21 @@ class LoadFeedImageDataFromCacheUseCaseTests: XCTestCase {
         expect(sut, toCompleteWith: .success(foundData), when: {
             store.complete(with: foundData)
         })
+    }
+    
+    func test_loadImageDataFromURL_doesNotDeliverResultAfterCancellingTask() {
+        let (sut, store) = makeSUT()
+        let foundData = anyData()
         
+        var received = [FeedImageDataLoader.Result]()
+        let task = sut.loadImageData(from: anyURL()) { received.append($0) }
+        task.cancel()
         
-        func test_loadImageDataFromURL_doesNotDeliverResultAfterCancellingTask() {
-            let (sut, store) = makeSUT()
-            let foundData = anyData()
-            
-            var received = [FeedImageDataLoader.Result]()
-            let task = sut.loadImageData(from: anyURL()) { received.append($0) }
-            task.cancel()
-            
-            store.complete(with: foundData)
-            store.complete(with: .none)
-            store.complete(with: anyNSError())
-            
-            XCTAssertTrue(received.isEmpty, "Expected no received results after cancelling task")
-        }
+        store.complete(with: foundData)
+        store.complete(with: .none)
+        store.complete(with: anyNSError())
+        
+        XCTAssertTrue(received.isEmpty, "Expected no received results after cancelling task")
     }
     
     // MARK: - Helpers
