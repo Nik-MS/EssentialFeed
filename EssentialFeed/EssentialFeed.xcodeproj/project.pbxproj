@@ -222,6 +222,7 @@
 		EA786C1E2BCFFAC70057AC77 /* FeedImageDataStorySpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataStorySpy.swift; sourceTree = "<group>"; };
 		EA786C202BCFFB590057AC77 /* CacheFeedImageDataUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheFeedImageDataUseCaseTests.swift; sourceTree = "<group>"; };
 		EA786C222BD193770057AC77 /* CoreDataFeedImageDataStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedImageDataStoreTests.swift; sourceTree = "<group>"; };
+		EA786C242BD196830057AC77 /* FeedStore 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "FeedStore 2.xcdatamodel"; sourceTree = "<group>"; };
 		EA79071A2B9B445A002DC1EA /* LoadFeedImageDataFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFeedImageDataFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 		EA7ACA072B84DB1900429645 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		EA7ACA0C2B84E20500429645 /* UIRefreshControl+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+Helpers.swift"; sourceTree = "<group>"; };
@@ -1611,6 +1612,7 @@
 		EA483A112B3CD1B8004BCB8C /* FeedStore.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				EA786C242BD196830057AC77 /* FeedStore 2.xcdatamodel */,
 				EA483A122B3CD1B8004BCB8C /* FeedStore.xcdatamodel */,
 			);
 			currentVersion = EA483A122B3CD1B8004BCB8C /* FeedStore.xcdatamodel */;
