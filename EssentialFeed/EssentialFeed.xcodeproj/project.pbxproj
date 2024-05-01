@@ -1619,7 +1619,7 @@
 				EA786C242BD196830057AC77 /* FeedStore 2.xcdatamodel */,
 				EA483A122B3CD1B8004BCB8C /* FeedStore.xcdatamodel */,
 			);
-			currentVersion = EA483A122B3CD1B8004BCB8C /* FeedStore.xcdatamodel */;
+			currentVersion = EA786C242BD196830057AC77 /* FeedStore 2.xcdatamodel */;
 			path = FeedStore.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
