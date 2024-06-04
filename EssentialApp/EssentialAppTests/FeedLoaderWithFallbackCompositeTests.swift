@@ -46,6 +46,12 @@ class FeedLoaderWithFallbackCompositeTests: XCTestCase {
         expect(sut, toCompleteWith: .success(fallbackFeed))
     }
     
+    func test_load_deliversErrorOnPrimaryAndFallbackFailure() {
+        let sut = makeSUT(primaryResult: .failure(anyNSError()), fallbackResult: .failure(anyNSError()))
+        
+        expect(sut, toCompleteWith: .failure(anyNSError()))
+    }
+    
     func anyNSError() -> NSError {
         return NSError(domain: "any error", code: 1)
     }
