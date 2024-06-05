@@ -32,13 +32,8 @@ class FeedLoaderWithFallbackCompositeTests: XCTestCase {
         expect(sut, toCompleteWith: .failure(anyNSError()))
     }
     
-    func anyNSError() -> NSError {
-        return NSError(domain: "any error", code: 1)
-    }
-
-    
     private func uniqueFeed() -> [FeedImage] {
-        [FeedImage(id: .init(), description: "any", location: "any", url: URL(string: "http://any-url.com")!)]
+        [FeedImage(id: .init(), description: "any", location: "any", url: anyURL())]
     }
     
     private func makeSUT(primaryResult: FeedLoader.Result, fallbackResult: FeedLoader.Result, file: StaticString = #file, line: UInt = #line) -> FeedLoader {
