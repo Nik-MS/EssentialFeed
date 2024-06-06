@@ -128,8 +128,8 @@ final class EssentialFeedCacheIntegrationTests: XCTestCase {
     
     private func save(_ feed: [FeedImage], with loader: LocalFeedLoader, file: StaticString = #file, line: UInt = #line) {
         let saveExp = expectation(description: "Wait for save completion")
-        loader.save(feed) { saveError in
-            if let saveError {
+        loader.save(feed) { result in
+            if case let .failure(saveError) = result {
                 XCTFail("Expected to save feed successfully, got error: \(saveError).", file: file, line: line)
             }
             
