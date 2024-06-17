@@ -5,8 +5,9 @@
 //  Created by Nikhil Menon on 2/13/24.
 //
 
-import EssentialFeed
 import UIKit
+import EssentialFeed
+import EssentialFeediOS
 
 final class WeakRefVirtualProxy<T: AnyObject> {
     private weak var object: T?
