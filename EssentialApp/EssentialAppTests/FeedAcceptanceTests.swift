@@ -39,6 +39,24 @@ final class FeedAcceptanceTests: XCTestCase {
         XCTAssertEqual(feed.numberOfRenderedFeedImageViews(), 0)
     }
     
+    // With UITests, we previously could not test the scenario for backgrounding.
+    // Now we can with integration tests!
+    func test_onEnteringBackground_keepsNonExpiredFeedCache() {
+        let store = InMemoryFeedStore.withNonExpiredFeedCache
+        
+        enterBackground(with: store)
+        
+        XCTAssertNotNil(store.feedCache, "Expected to keep non-expired cache")
+    }
+    
+    func test_onEnteringBackground_deletesExpiredFeedCache() {
+        let store = InMemoryFeedStore.withExpiredFeedCache
+        
+        enterBackground(with: store)
+        
+        XCTAssertNil(store.feedCache, "Expected to delete expired cache")
+    }
+    
     // MARK: - Helpers
     
     private func launch(httpClient: HTTPClientStub = .offline, store: InMemoryFeedStore = .empty) -> FeedViewController {
@@ -51,6 +69,11 @@ final class FeedAcceptanceTests: XCTestCase {
         let nav = sut.window?.rootViewController as? UINavigationController
         let feed = nav?.topViewController as! FeedViewController
         return feed
+    }
+    
+    private func enterBackground(with store: InMemoryFeedStore) {
+        let sut = SceneDelegate(httpClient: HTTPClientStub.offline, store: store)
+        sut.sceneWillResignActive(UIApplication.shared.connectedScenes.first!)
     }
     
     private func response(for url: URL) -> (Data, HTTPURLResponse) {
@@ -105,11 +128,23 @@ fileprivate class HTTPClientStub: HTTPClient {
 }
 
 fileprivate class InMemoryFeedStore: FeedStore, FeedImageDataStore {
-    private var feedCache: CachedFeed?
-    private var feedImageDataCache: [URL: Data] = [:]
+    private(set) var feedCache: CachedFeed?
+    private(set) var feedImageDataCache: [URL: Data] = [:]
+    
+    init(feedCache: CachedFeed? = nil) {
+        self.feedCache = feedCache
+    }
     
     static var empty: InMemoryFeedStore {
         InMemoryFeedStore()
+    }
+    
+    static var withNonExpiredFeedCache: InMemoryFeedStore {
+        InMemoryFeedStore(feedCache: CachedFeed(feed: [], timestamp: Date()))
+    }
+    
+    static var withExpiredFeedCache: InMemoryFeedStore {
+        InMemoryFeedStore(feedCache: CachedFeed(feed: [], timestamp: Date.distantPast))
     }
     
     func insert(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void) {
