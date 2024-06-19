@@ -6,17 +6,15 @@
 //
 
 import Foundation
-import UIKit
-import EssentialFeed
 
 public struct FeedImageViewModel<Image> {
-    var description: String?
-    var location: String?
-    let image: Image?
-    let isLoading: Bool
-    let shouldRetry: Bool
+    public var description: String?
+    public var location: String?
+    public let image: Image?
+    public let isLoading: Bool
+    public let shouldRetry: Bool
     
-    var hasLocation: Bool {
+    public var hasLocation: Bool {
         return location != nil
     }
 }
