@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 public struct FeedImageViewModel<Image> {
     public var description: String?
