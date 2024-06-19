@@ -134,7 +134,6 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="cVu-Pv-PkG" firstAttribute="width" secondItem="fkf-Pq-9ih" secondAttribute="width" multiplier="0.235127" id="NKf-xV-1pi"/>
                                                 <constraint firstItem="Qee-tr-0CQ" firstAttribute="width" secondItem="fkf-Pq-9ih" secondAttribute="width" multiplier="0.997167" id="yH2-ec-vup"/>
                                             </constraints>
                                         </stackView>
