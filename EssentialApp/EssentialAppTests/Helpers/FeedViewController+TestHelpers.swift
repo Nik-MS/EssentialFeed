@@ -58,8 +58,6 @@ extension FeedViewController {
     
     func simulateUserInitiatedFeedReload() {
         refreshControl?.simulatePullToRefresh()
-        tableView.layoutIfNeeded()
-        RunLoop.current.run(until: .now)
     }
     
     var errorMessage: String? {
