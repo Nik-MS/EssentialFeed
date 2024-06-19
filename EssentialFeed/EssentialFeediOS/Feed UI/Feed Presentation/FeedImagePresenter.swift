@@ -8,24 +8,24 @@
 import Foundation
 import EssentialFeed
 
-protocol FeedImageView {
+public protocol FeedImageView {
     associatedtype Image
     func display(_ viewModel: FeedImageViewModel<Image>)
 }
 
-final class FeedImagePresenter<View: FeedImageView, Image> where View.Image == Image {
+final public class FeedImagePresenter<View: FeedImageView, Image> where View.Image == Image {
     private let imageTransformer: ((Data)) -> Image?
     
     private let view: View
     
-    init(view: View, imageTransformer: @escaping (Data) -> Image?) {
+    public init(view: View, imageTransformer: @escaping (Data) -> Image?) {
         self.imageTransformer = imageTransformer
         self.view = view
     }
     
     private struct InvalidImageDataError: Error { }
     
-    func didStartLoadingImageData(for model: FeedImage) {
+    public func didStartLoadingImageData(for model: FeedImage) {
         view.display(FeedImageViewModel(
             description: model.description,
             location: model.location,
@@ -35,7 +35,7 @@ final class FeedImagePresenter<View: FeedImageView, Image> where View.Image == I
         )
     }
     
-    func didFinishLoadingImageData(with data: Data, for model: FeedImage) {
+    public func didFinishLoadingImageData(with data: Data, for model: FeedImage) {
         guard let image = imageTransformer(data) else {
             return didFinishLoadingImageData(with: InvalidImageDataError(), for: model)
         }
@@ -49,7 +49,7 @@ final class FeedImagePresenter<View: FeedImageView, Image> where View.Image == I
         )
     }
     
-    func didFinishLoadingImageData(with error: Error, for model: FeedImage) {
+    public func didFinishLoadingImageData(with error: Error, for model: FeedImage) {
         view.display(FeedImageViewModel(
             description: model.description,
             location: model.location,

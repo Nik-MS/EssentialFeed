@@ -9,9 +9,11 @@ import UIKit
 import EssentialFeediOS
 
 extension FeedViewController {
-    func feedImageView(at index: Int) -> UITableViewCell? {
+    func feedImageView(at row: Int) -> UITableViewCell? {
+        guard numberOfRenderedFeedImageViews() > row else { return nil }
+        
         let ds = tableView.dataSource
-        let indexPath = IndexPath(row: index, section: feedImagesSection)
+        let indexPath = IndexPath(row: row, section: feedImagesSection)
         return ds?.tableView(tableView, cellForRowAt: indexPath)
     }
     
@@ -19,6 +21,10 @@ extension FeedViewController {
     func simulateFeedImageViewVisible(at index: Int) -> FeedImageCell? {
         let view = feedImageView(at: index) as? FeedImageCell
         return view
+    }
+    
+    func renderedFeedImageData(at index: Int) -> Data? {
+        simulateFeedImageViewVisible(at: index)?.renderedImage
     }
     
     @discardableResult

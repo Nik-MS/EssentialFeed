@@ -6,6 +6,7 @@
 //
 
 import EssentialFeed
+import EssentialFeediOS
 
 final class MainQueueDispatchDecorator<T> {
     private let decoratee: T
