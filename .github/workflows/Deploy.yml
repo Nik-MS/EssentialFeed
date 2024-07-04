@@ -7,6 +7,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: macos-13
+    env:
+      APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID}}
+      APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID}}
 
     steps:
       - name: Setup Xcode Version
@@ -18,19 +21,20 @@ jobs:
       - name: Bundle Install
         run: bundle install
       - name: Install Provisioning Profile
-        run: 
-          gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.SECRET_KEY}}" --output .github/deployment/profile.mobileprovision .github/deployment/profile.mobileprovision.gpg
+        run:  |
+          gpg --quiet --batch --yes --passphrase="${{secrets.SECRET_KEY}}" --output .github/deployment/profile.mobileprovision --decrypt .github/deployment/profile.mobileprovision.gpg
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp .github/deployment/profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
       - name: Install Certificate
-        run:
-          gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.SECRET_KEY}}" --output .github/deployment/certificate.p12 .github/deployment/certificate.p12.gpg
+        run: |
+          gpg --quiet --batch --yes --passphrase="${{secrets.SECRET_KEY}}" --output .github/deployment/certificate.p12 --decrypt .github/deployment/certificates.p12.gpg
           security create-keychain -p "" build.keychain
-          security import .github/deployment/certificate.p12 -t agg -k ~/Library/Keychains/build.keychain -P "${{secrets.SECRET_KEY}}" -A
+          security import .github/deployment/certificate.p12 -t agg -k ~/Library/Keychains/build.keychain -P "${{secrets.CERTIFICATE_KEY}}" -A
           security list-keychains -s ~/Library/Keychains/build.keychain
           security default-keychain -s ~/Library/Keychains/build.keychain
           security unlock-keychain -p "" ~/Library/Keychains/build.keychain
-          security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain
+          security set-key-partition-list -S "apple-tool:,apple:" -s -k "" ~/Library/Keychains/build.keychain
       - name: Deploy
-        run:
+        run: |
+          gpg --quiet --batch --yes --passphrase="${{secrets.SECRET_KEY}}" --output .github/deployment/ASC_AuthKey.p8 --decrypt .github/deployment/ASC_AuthKey.p8.gpg
           bundle exec fastlane ios deploy_testflight
