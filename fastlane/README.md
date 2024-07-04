@@ -36,6 +36,14 @@ Test CI MacOS
 
 Test CI iOS
 
+### ios deploy_testflight
+
+```sh
+[bundle exec] fastlane ios deploy_testflight
+```
+
+Deploy to Testflight
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.

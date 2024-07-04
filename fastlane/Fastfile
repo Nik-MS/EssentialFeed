@@ -34,4 +34,16 @@ platform :ios do
       clean: true
       )
   end
+
+  desc "Deploy to Testflight"
+  lane :deploy_testflight do
+    sync_code_signing(type: "appstore")
+    increment_build_number(ENV['GITHUB_RUN_NUMBER'])
+    build_app(
+      scheme: "EssentialApp", 
+      workspace: "EssentialApp.xcworkspace", 
+      include_bitcode: false
+      )
+    upload_to_testflight
+  end
 end

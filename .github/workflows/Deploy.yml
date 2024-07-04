@@ -1,0 +1,36 @@
+name: Deploy to AppStoreConnect
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: macos-13
+
+    steps:
+      - name: Setup Xcode Version
+        uses: maxim-lobanov/setup-xcode@v1.6.0
+        with:
+          xcode-version: '15.2'
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Bundle Install
+        run: bundle install
+      - name: Install Provisioning Profile
+        run: 
+          gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.SECRET_KEY}}" --output .github/deployment/profile.mobileprovision .github/deployment/profile.mobileprovision.gpg
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp .github/deployment/profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+      - name: Install Certificate
+        run:
+          gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.SECRET_KEY}}" --output .github/deployment/certificate.p12 .github/deployment/certificate.p12.gpg
+          security create-keychain -p "" build.keychain
+          security import .github/deployment/certificate.p12 -t agg -k ~/Library/Keychains/build.keychain -P "${{secrets.SECRET_KEY}}" -A
+          security list-keychains -s ~/Library/Keychains/build.keychain
+          security default-keychain -s ~/Library/Keychains/build.keychain
+          security unlock-keychain -p "" ~/Library/Keychains/build.keychain
+          security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain
+      - name: Deploy
+        run:
+          bundle exec fastlane ios deploy_testflight
