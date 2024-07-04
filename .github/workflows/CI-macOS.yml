@@ -1,14 +1,10 @@
-name: EssentialFeed Workflow
-
+name: CI-macOS
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
-  build:
-    name: End-to-End Test EssentialFeed Framework
+  build-and-test:
     runs-on: macos-13
 
     steps:
@@ -23,6 +19,3 @@ jobs:
       - name: Test CI MacOS
         run:
           bundle exec fastlane mac test_ci_macos
-      - name: Test CI iOS
-        run: 
-          bundle exec fastlane ios test_ci_ios
