@@ -44,6 +44,7 @@ platform :ios do
     build_app(
       scheme: "EssentialApp", 
       export_method: "app-store",
+      export_options: ".github/deployment/ExportOptions.plist",
       workspace: "EssentialApp.xcworkspace", 
       include_bitcode: false
       )
