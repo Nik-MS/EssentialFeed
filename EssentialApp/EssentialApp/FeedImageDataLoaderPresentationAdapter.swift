@@ -7,15 +7,18 @@
 
 import EssentialFeed
 import EssentialFeediOS
+import Combine
 
 final class FeedImageDataLoaderPresentationAdapter<View: FeedImageView, Image>: FeedImageCellControllerDelegate where Image == View.Image {
     private let model: FeedImage
-    private let imageLoader: FeedImageDataLoader
+    private let imageLoader: (URL) -> FeedImageDataLoader.Publisher
     private var task: FeedImageDataLoaderTask?
+    private var cancellable: Cancellable?
+    
     
     public var presenter: FeedImagePresenter<View, Image>?
     
-    init(model: FeedImage, imageLoader: FeedImageDataLoader) {
+    init(model: FeedImage, imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher) {
         self.model = model
         self.imageLoader = imageLoader
     }
@@ -23,19 +26,19 @@ final class FeedImageDataLoaderPresentationAdapter<View: FeedImageView, Image>: 
     func didRequestImage() {
         presenter?.didStartLoadingImageData(for: model)
         let model = self.model
-        task = imageLoader.loadImageData(from: model.url) { [weak self] result in
-            switch result {
-            case let .success(data):
-                self?.presenter?.didFinishLoadingImageData(with: data, for: model)
-            case let .failure(error):
+        
+        cancellable = imageLoader(model.url).sink { [weak self] completion in
+            if case let .failure(error) = completion {
                 self?.presenter?.didFinishLoadingImageData(with: error, for: model)
             }
+            
+        } receiveValue: { [weak self] data in
+            self?.presenter?.didFinishLoadingImageData(with: data, for: model)
         }
     }
     
     func didCancelImageRequest() {
-        task?.cancel()
-        task = nil
+        cancellable?.cancel()
     }
     
     private func handle(_ result: FeedImageDataLoader.Result) {
