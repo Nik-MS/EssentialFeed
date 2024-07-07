@@ -7,6 +7,7 @@
 
 import EssentialFeed
 import EssentialFeediOS
+import Combine
 
 final class MainQueueDispatchDecorator<T> {
     private let decoratee: T
@@ -21,14 +22,6 @@ final class MainQueueDispatchDecorator<T> {
         }
         
         completion()
-    }
-}
-
-extension MainQueueDispatchDecorator: FeedLoader where T == FeedLoader {
-    func load(completion: @escaping (Result<[EssentialFeed.FeedImage], Error>) -> Void) {
-        decoratee.load { [weak self] result in
-            self?.dispatch { completion(result) }
-        }
     }
 }
 
