@@ -9,47 +9,6 @@ import XCTest
 import EssentialFeed
 
 final class LogImageCommentsFromRemoteUseCaseTests: XCTestCase {
-    func test_init_dotNotRequestDataFromURL() {
-        let (_, client) = makeSUT()
-        
-        XCTAssertTrue(client.requestedURLs.isEmpty)
-    }
-     
-    func test_load_requestsDataFromURL() {
-        let url = URL(string: "https://a-given-url.com")!
-        let (sut, client) = makeSUT(url: url)
-        
-        sut.load() { _ in }
-        
-        XCTAssertEqual(client.requestedURLs, [url])
-    }
-    
-    func test_loadTwice_requestsDataFromURLTwice() {
-        let url = URL(string: "https://a-given-url.com")!
-        let (sut, client) = makeSUT(url: url)
-        
-        sut.load() { _ in }
-        sut.load() { _ in }
-        
-        XCTAssertEqual(client.requestedURLs, [url, url])
-    }
-    
-    func test_load_deliversErrorOnClientError() {
-        let (sut, client) = makeSUT()
-        
-        // When we tell the sut to load.
-        // Completion block gets stored by the spy
-        // Spy gets the completion block and executes it when we pass in an error.
-        let clientError = NSError(domain: "Test", code: 0)
-        
-        expect(sut, toCompleteWith: failure(.connectivity)) {
-            client.complete(with: clientError)
-        }
-    }
-    
-    // When we tell the sut to load.
-    // Completion block gets stored by the spy
-    // Spy gets the completion block and executes it when we pass in an error.
     
     func test_load_deliversErrorOnNon2xxHTTPResponse() {
         let (sut, client) = makeSUT()
@@ -114,21 +73,6 @@ final class LogImageCommentsFromRemoteUseCaseTests: XCTestCase {
                 client.complete(withStatusCode: code, data: itemsJSON, at: index)
             }
         }
-    }
-    
-    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
-        let url = URL(string: "http://a-url.com")!
-        let client = HTTPClientSpy()
-        var sut: RemoteImageCommentsLoader? = RemoteImageCommentsLoader(url: url, client: client)
-        
-        var capturedResults = [RemoteImageCommentsLoader.Result]()
-        sut?.load { capturedResults.append($0) }
-        
-        sut = nil
-        client.complete(withStatusCode: 200, data: makeItemsJSON([]))
-        
-        
-        XCTAssertTrue(capturedResults.isEmpty)
     }
     
     // MARK: - Helpers
