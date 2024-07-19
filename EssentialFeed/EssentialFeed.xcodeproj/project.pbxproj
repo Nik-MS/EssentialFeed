@@ -406,6 +406,23 @@
 			path = "Shared API Infra";
 			sourceTree = "<group>";
 		};
+		EA2DD33E2C49F50600996B25 /* Image Comments API */ = {
+			isa = PBXGroup;
+			children = (
+				EA2DD3312C48040B00996B25 /* RemoteImageCommentsLoader.swift */,
+				EA2DD3332C4804C600996B25 /* ImageCommentsMapper.swift */,
+			);
+			path = "Image Comments API";
+			sourceTree = "<group>";
+		};
+		EA2DD33F2C49F51C00996B25 /* Image Comments API */ = {
+			isa = PBXGroup;
+			children = (
+				EA2DD32F2C4802E500996B25 /* LoadImageCommentsFromRemoteUseCase.swift */,
+			);
+			path = "Image Comments API";
+			sourceTree = "<group>";
+		};
 		EA501AF72B348C6200D18295 /* FeedStoreSpecs */ = {
 			isa = PBXGroup;
 			children = (
@@ -502,8 +519,6 @@
 				EA9325262AC39EB3008A25F2 /* RemoteFeedLoader.swift */,
 				EA9AB9882AF6A89C00291284 /* FeedItemMapper.swift */,
 				EAF5BAB22BAB16AD00EE3B48 /* RemoteFeedImageDataLoader.swift */,
-				EA2DD3312C48040B00996B25 /* RemoteImageCommentsLoader.swift */,
-				EA2DD3332C4804C600996B25 /* ImageCommentsMapper.swift */,
 			);
 			path = FeedAPI;
 			sourceTree = "<group>";
@@ -521,7 +536,6 @@
 			isa = PBXGroup;
 			children = (
 				EA646BEB2AABBDF700279320 /* LoadFeedFromRemoteUseCaseTests.swift */,
-				EA2DD32F2C4802E500996B25 /* LoadImageCommentsFromRemoteUseCase.swift */,
 				EA79071A2B9B445A002DC1EA /* LoadFeedImageDataFromRemoteUseCaseTests.swift */,
 			);
 			path = FeedAPI;
@@ -602,6 +616,7 @@
 		EAE79C612AA40A98009585E1 /* EssentialFeed */ = {
 			isa = PBXGroup;
 			children = (
+				EA2DD33E2C49F50600996B25 /* Image Comments API */,
 				EA2DD3392C49F40900996B25 /* Shared API Infra */,
 				EA2DD3382C49F3F500996B25 /* Shared API */,
 				EA2DD3352C49E98100996B25 /* Image Comments Feature */,
@@ -617,6 +632,7 @@
 		EAE79C6B2AA40A99009585E1 /* EssentialFeedTests */ = {
 			isa = PBXGroup;
 			children = (
+				EA2DD33F2C49F51C00996B25 /* Image Comments API */,
 				EA2DD33B2C49F42700996B25 /* Shared API */,
 				EA2DD33D2C49F47700996B25 /* Shared API Infra */,
 				EA9AB98A2AF6B12200291284 /* FeedAPI */,
