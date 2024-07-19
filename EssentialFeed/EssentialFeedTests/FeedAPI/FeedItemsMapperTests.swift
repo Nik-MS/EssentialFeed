@@ -40,7 +40,6 @@ final class FeedItemsMapperTests: XCTestCase {
         let result = try FeedItemsMapper.map(itemsJSON, from: HTTPURLResponse(statusCode: 200))
         
         XCTAssertEqual(result, items)
-        
     }
     
     // MARK: - Helpers
@@ -63,7 +62,7 @@ final class FeedItemsMapperTests: XCTestCase {
     }
 }
 
-extension HTTPURLResponse {
+fileprivate extension HTTPURLResponse {
     convenience init(statusCode: Int) {
         self.init(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
     }
