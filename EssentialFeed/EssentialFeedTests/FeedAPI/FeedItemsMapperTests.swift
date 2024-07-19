@@ -61,9 +61,3 @@ final class FeedItemsMapperTests: XCTestCase {
         return (item, itemJson)
     }
 }
-
-fileprivate extension HTTPURLResponse {
-    convenience init(statusCode: Int) {
-        self.init(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
-    }
-}
