@@ -52,7 +52,7 @@ final class RemoteLoaderTests: XCTestCase {
           throw anyNSError()
         })
         
-        expect(sut, toCompleteWith: .failure(.invalidData)) {
+        expect(sut, toCompleteWith: .failure(RemoteLoader<String>.Error.invalidData)) {
             let invalidJSON = Data("invalid json".utf8)
             client.complete(withStatusCode: 200, data: invalidJSON)
         }
