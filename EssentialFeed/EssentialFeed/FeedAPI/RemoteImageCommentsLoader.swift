@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class RemoteImageCommentsLoader: FeedLoader {
+public final class RemoteImageCommentsLoader {
     private let url: URL
     // RemoteFeedLoader does not need to locate or instantiate HTTPClient instance.
     // Instead, we make our code more modular by injecting as a dependency.
@@ -18,14 +18,14 @@ public final class RemoteImageCommentsLoader: FeedLoader {
         case invalidData
     }
     
-    public typealias Result = FeedLoader.Result
+    public typealias Result = Swift.Result<[ImageComment], Error>
     
     public init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
     }
     
-    public func load(completion: @escaping (Result) -> Void) {
+    public func load(completion: @escaping (RemoteImageCommentsLoader.Result) -> Void) {
         client.get(from: url) { [weak self] result in
             guard self != nil else { return }
             
@@ -38,18 +38,12 @@ public final class RemoteImageCommentsLoader: FeedLoader {
         }
     }
     
-    private static func map(_ data: Data, from response: HTTPURLResponse) -> Result {
+    private static func map(_ data: Data, from response: HTTPURLResponse) -> RemoteImageCommentsLoader.Result {
         do {
             let items = try ImageCommentsMapper.map(data, from: response)
-            return .success(items.toModels())
+            return .success(items)
         } catch {
-            return .failure(error)
+            return .failure(.invalidData)
         }
-    }
-}
-
-private extension Array where Element == RemoteFeedItem {
-    func toModels() -> [FeedImage] {
-        return map { FeedImage(id: $0.id, description: $0.description, location: $0.location, url: $0.image) }
     }
 }
