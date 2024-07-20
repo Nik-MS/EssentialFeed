@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		EA0C47822C11DBD0005514E5 /* FeedLoaderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0C47812C11DBD0005514E5 /* FeedLoaderStub.swift */; };
-		EA0C47842C11DCB7005514E5 /* XCTestCase+FeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0C47832C11DCB7005514E5 /* XCTestCase+FeedLoader.swift */; };
 		EA1EC9E02BFF73D0007F962B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1EC9DF2BFF73D0007F962B /* AppDelegate.swift */; };
 		EA1EC9E22BFF73D0007F962B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1EC9E12BFF73D0007F962B /* SceneDelegate.swift */; };
 		EA1EC9E42BFF73D0007F962B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1EC9E32BFF73D0007F962B /* ViewController.swift */; };
@@ -72,7 +71,6 @@
 
 /* Begin PBXFileReference section */
 		EA0C47812C11DBD0005514E5 /* FeedLoaderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderStub.swift; sourceTree = "<group>"; };
-		EA0C47832C11DCB7005514E5 /* XCTestCase+FeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FeedLoader.swift"; sourceTree = "<group>"; };
 		EA1EC9DC2BFF73D0007F962B /* EssentialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA1EC9DF2BFF73D0007F962B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA1EC9E12BFF73D0007F962B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 				EA90D4DF2C205B3400864028 /* UIRefreshControl+TestHelpers.swift */,
 				EA90D4E32C205B3500864028 /* UIImage+TestHelpers.swift */,
 				EA1FA6482C10A73E006244A5 /* XCTestCase+MemoryLeakTracking.swift */,
-				EA0C47832C11DCB7005514E5 /* XCTestCase+FeedLoader.swift */,
 				EAB40FF42C133F2900019F5B /* XCTestCase+FeedImageDataLoader.swift */,
 				EACAFE482C21BBE7008C09BF /* InMemoryFeedStore.swift */,
 				EA1FA64A2C10A7A6006244A5 /* SharedTestHelpers.swift */,
@@ -333,7 +330,6 @@
 			files = (
 				EA90D4E62C205B3500864028 /* FeedViewControllerTests+Assertions.swift in Sources */,
 				EA1FA64B2C10A7A6006244A5 /* SharedTestHelpers.swift in Sources */,
-				EA0C47842C11DCB7005514E5 /* XCTestCase+FeedLoader.swift in Sources */,
 				EAB40FF52C133F2900019F5B /* XCTestCase+FeedImageDataLoader.swift in Sources */,
 				EA90D4E72C205B3500864028 /* FeedViewControllerTests+FakeRefreshControl.swift in Sources */,
 				EA90D4C32C20566900864028 /* SceneDelegateTests.swift in Sources */,
