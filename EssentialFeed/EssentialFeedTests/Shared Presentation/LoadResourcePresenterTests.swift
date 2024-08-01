@@ -41,13 +41,13 @@ final class SUTTests: XCTestCase {
         ])
     }
     
-    func test_didFinishLoadingFeedWithError_displaysLocalizedError() {
+    func test_didFinishLoadingWithError_displaysLocalizedError() {
         let (sut, view) = makeSUT()
         
         sut.didFinishLoadingFeed(with: anyNSError())
         
         XCTAssertEqual(view.messages, [
-            .display(errorMessage: localized("FEED_VIEW_CONNECTION_ERROR")),
+            .display(errorMessage: localized("GENERIC_CONNECTION_ERROR")),
             .display(isLoading: false)
         ])
     }
