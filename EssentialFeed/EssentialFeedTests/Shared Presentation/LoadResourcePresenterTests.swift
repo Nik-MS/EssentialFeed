@@ -44,7 +44,7 @@ final class SUTTests: XCTestCase {
     func test_didFinishLoadingWithError_displaysLocalizedError() {
         let (sut, view) = makeSUT()
         
-        sut.didFinishLoadingFeed(with: anyNSError())
+        sut.didFinishLoading(with: anyNSError())
         
         XCTAssertEqual(view.messages, [
             .display(errorMessage: localized("GENERIC_CONNECTION_ERROR")),
