@@ -13,29 +13,45 @@ public protocol FeedImageCellControllerDelegate {
     func didCancelImageRequest()
 }
 
-final public class FeedImageCellController: FeedImageView {
+final public class FeedImageCellController: FeedImageView, ResourceView, ResourceLoadingView, ResourceErrorView {
+    public typealias ResourceViewModel = UIImage
+    
     private let delegate: FeedImageCellControllerDelegate
     private var cell: FeedImageCell?
+    private let viewModel: FeedImageViewModel<UIImage>
     
-    public func display(_ viewModel: FeedImageViewModel<UIImage>) {
-        cell?.locationContainer.isHidden = !viewModel.hasLocation
-        cell?.locationLabel.text = viewModel.location
-        cell?.descriptionLabel.text = viewModel.description
-        cell?.feedImageView.setImageAnimated(viewModel.image)
-        cell?.feedImageContainer.isShimmering = viewModel.isLoading
-        cell?.feedImageRetryButton.isHidden = !viewModel.shouldRetry
-        cell?.onRetry = delegate.didRequestImage
-        cell?.onReuse = { [weak self] in
-            self?.releaseCellForReuse()
-        }
+    public func display(_ viewModel: ResourceErrorViewModel) {
+        cell?.feedImageRetryButton.isHidden = viewModel.message == nil
     }
     
-    public init(delegate: FeedImageCellControllerDelegate) {
+    
+    public func display(_ viewModel: ResourceLoadingViewModel) {
+        cell?.feedImageContainer.isShimmering = viewModel.isLoading
+    }
+    
+    public func display(_ viewModel: UIImage) {
+        cell?.feedImageView.setImageAnimated(viewModel)
+    }
+    
+    public func display(_ viewModel: FeedImageViewModel<UIImage>) { }
+    
+    public init(viewModel: FeedImageViewModel<UIImage>,delegate: FeedImageCellControllerDelegate) {
         self.delegate = delegate
+        self.viewModel = viewModel
     }
     
     func view(in tableView: UITableView) -> UITableViewCell {
         cell = tableView.dequeueReusableCell()
+        cell?.onRetry = delegate.didRequestImage
+        cell?.locationContainer.isHidden = !viewModel.hasLocation
+        cell?.locationLabel.text = viewModel.location
+        cell?.descriptionLabel.text = viewModel.description
+        
+        
+        cell?.onReuse = { [weak self] in
+            self?.releaseCellForReuse()
+        }
+        
         delegate.didRequestImage()
         return cell!
     }
