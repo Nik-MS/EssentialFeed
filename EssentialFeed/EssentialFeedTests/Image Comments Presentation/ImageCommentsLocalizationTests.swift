@@ -15,5 +15,4 @@ final class ImageCommentsLocalizationTests: XCTestCase {
         
         assertLocalizedKeyAndValuesExist(in: bundle, table)
     }
-
 }
