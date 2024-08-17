@@ -28,11 +28,13 @@ public final class ImageCommentsPresenter {
         NSLocalizedString("IMAGE_COMMENTS_VIEW_TITLE", tableName: "ImageComments", bundle: Bundle(for: ImageCommentsPresenter.self), comment: "Title for the feed view")
     }
     
-    public static func map(_ comments: [ImageComment]) -> ImageCommentsViewModel {
+    public static func map(_ comments: [ImageComment], currentDate: Date = .now, calendar: Calendar = .current, locale: Locale = .current) -> ImageCommentsViewModel {
         let formatter = RelativeDateTimeFormatter()
+        formatter.calendar = calendar
+        formatter.locale = locale
         
         return ImageCommentsViewModel(comments: comments.map { comment in
-            let relativeDate = formatter.localizedString(for: comment.createdAt, relativeTo: .now)
+            let relativeDate = formatter.localizedString(for: comment.createdAt, relativeTo: currentDate)
             return ImageCommentViewModel(message: comment.message, date: relativeDate, username: comment.username)
         })
     }
