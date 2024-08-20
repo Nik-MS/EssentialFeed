@@ -241,6 +241,14 @@
 		EAB7A6CB2B289ECB00C3CE4E /* ValidateFeedUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateFeedUseCaseTests.swift; sourceTree = "<group>"; };
 		EAB7A6CD2B28A1F200C3CE4E /* FeedCacheTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCacheTestHelpers.swift; sourceTree = "<group>"; };
 		EAB7A6CF2B28A2BD00C3CE4E /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
+		EAC871382C74A52200FD9484 /* FEED_WITH_ERROR_MESSAGE_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FEED_WITH_ERROR_MESSAGE_DARK.png; sourceTree = "<group>"; };
+		EAC871392C74A52200FD9484 /* FEED_WITH_CONTENT_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FEED_WITH_CONTENT_DARK.png; sourceTree = "<group>"; };
+		EAC8713A2C74A52200FD9484 /* FEED_WITH_FAILED_IMAGE_LOADING__DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FEED_WITH_FAILED_IMAGE_LOADING__DARK.png; sourceTree = "<group>"; };
+		EAC8713B2C74A52200FD9484 /* EMPTY_FEED_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_FEED_LIGHT.png; sourceTree = "<group>"; };
+		EAC8713C2C74A52200FD9484 /* FEED_WITH_CONTENT_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FEED_WITH_CONTENT_LIGHT.png; sourceTree = "<group>"; };
+		EAC8713D2C74A52200FD9484 /* FEED_WITH_FAILED_IMAGE_LOADING_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FEED_WITH_FAILED_IMAGE_LOADING_LIGHT.png; sourceTree = "<group>"; };
+		EAC8713E2C74A52200FD9484 /* FEED_WITH_ERROR_MESSAGE_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FEED_WITH_ERROR_MESSAGE_LIGHT.png; sourceTree = "<group>"; };
+		EAC8713F2C74A52200FD9484 /* EMPTY_FEED_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_FEED_DARK.png; sourceTree = "<group>"; };
 		EACF297C2B5889C600A95B06 /* EssentialFeedAPIEndToEndTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = EssentialFeedAPIEndToEndTests.xctestplan; path = EssentialFeedAPIEndToEndTests/EssentialFeedAPIEndToEndTests.xctestplan; sourceTree = "<group>"; };
 		EACF29822B588D8E00A95B06 /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EACF29892B588D8E00A95B06 /* EssentialFeediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -487,7 +495,6 @@
 			children = (
 				EA7ACA092B84E12E00429645 /* Helpers */,
 				EAA6A92E2B614C720022A99E /* FeedImageCell.swift */,
-				EA7ACA072B84DB1900429645 /* ErrorView.swift */,
 				EA9A05A02B7A723600BE9831 /* Feed.storyboard */,
 				EA9A05A22B7A731900BE9831 /* Feed.xcassets */,
 			);
@@ -574,6 +581,7 @@
 			isa = PBXGroup;
 			children = (
 				EAC871352C742B8200FD9484 /* Views */,
+				EA7ACA072B84DB1900429645 /* ErrorView.swift */,
 				EAC871342C742B6100FD9484 /* Controllers */,
 			);
 			path = "Shared UI";
@@ -605,6 +613,31 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		EAC871372C74A4E500FD9484 /* FeedUI */ = {
+			isa = PBXGroup;
+			children = (
+				EAC871402C74A52200FD9484 /* snapshots */,
+				EA9907BF2C2325B7004B2901 /* FeedSnapshotTests.swift */,
+			);
+			path = FeedUI;
+			sourceTree = "<group>";
+		};
+		EAC871402C74A52200FD9484 /* snapshots */ = {
+			isa = PBXGroup;
+			children = (
+				EAC871382C74A52200FD9484 /* FEED_WITH_ERROR_MESSAGE_DARK.png */,
+				EAC871392C74A52200FD9484 /* FEED_WITH_CONTENT_DARK.png */,
+				EAC8713A2C74A52200FD9484 /* FEED_WITH_FAILED_IMAGE_LOADING__DARK.png */,
+				EAC8713B2C74A52200FD9484 /* EMPTY_FEED_LIGHT.png */,
+				EAC8713C2C74A52200FD9484 /* FEED_WITH_CONTENT_LIGHT.png */,
+				EAC8713D2C74A52200FD9484 /* FEED_WITH_FAILED_IMAGE_LOADING_LIGHT.png */,
+				EAC8713E2C74A52200FD9484 /* FEED_WITH_ERROR_MESSAGE_LIGHT.png */,
+				EAC8713F2C74A52200FD9484 /* EMPTY_FEED_DARK.png */,
+			);
+			name = snapshots;
+			path = /Users/nikhilmenon/Projects/iOSLeadEssentials/EssentialFeed/EssentialFeed/EssentialFeediOSTests/FeedUI/snapshots;
+			sourceTree = "<absolute>";
+		};
 		EACF29832B588D8E00A95B06 /* EssentialFeediOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -617,8 +650,8 @@
 		EACF298D2B588D8F00A95B06 /* EssentialFeediOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				EAC871372C74A4E500FD9484 /* FeedUI */,
 				EA9907C32C232C0C004B2901 /* Helpers */,
-				EA9907BF2C2325B7004B2901 /* FeedSnapshotTests.swift */,
 			);
 			path = EssentialFeediOSTests;
 			sourceTree = "<group>";
