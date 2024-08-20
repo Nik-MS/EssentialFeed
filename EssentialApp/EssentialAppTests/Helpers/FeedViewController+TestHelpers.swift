@@ -1,5 +1,5 @@
 //
-//  FeedViewController+TestHelpers.swift
+//  ListViewController+TestHelpers.swift
 //  EssentialFeediOSTests
 //
 //  Created by Nikhil Menon on 2/13/24.
@@ -8,7 +8,7 @@
 import UIKit
 import EssentialFeediOS
 
-extension FeedViewController {
+extension ListViewController {
     func feedImageView(at row: Int) -> UITableViewCell? {
         guard numberOfRenderedFeedImageViews() > row else { return nil }
         

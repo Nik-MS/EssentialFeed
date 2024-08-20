@@ -1,5 +1,5 @@
 //
-//  FeedViewController.swift
+//  ListViewController.swift
 //  EssentialFeediOS
 //
 //  Created by Nikhil Menon on 1/22/24.
@@ -8,22 +8,18 @@
 import UIKit
 import EssentialFeed
 
-public protocol FeedViewControllerDelegate {
-    func didRequestFeedRefresh()
-}
-
 public protocol CellController {
     func view(in tableView: UITableView) -> UITableViewCell
     func preload()
     func cancelLoad()
 }
 
-public class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching, ResourceLoadingView, ResourceErrorView {
-    public var delegate: FeedViewControllerDelegate?
+public class ListViewController: UITableViewController, UITableViewDataSourcePrefetching, ResourceLoadingView, ResourceErrorView {
+    public var onRefresh: (() -> Void)?
     
     @IBOutlet public private(set) var errorView: ErrorView?
     
-    private var onViewIsAppearing: ((FeedViewController) -> Void)?
+    private var onViewIsAppearing: ((ListViewController) -> Void)?
     
     private var tableModel = [CellController]() {
         didSet { tableView.reloadData() }
@@ -49,7 +45,7 @@ public class FeedViewController: UITableViewController, UITableViewDataSourcePre
     }
     
     @IBAction private func refresh() {
-        delegate?.didRequestFeedRefresh()
+        onRefresh?()
     }
     
     public func display(_ cellControllers: [FeedImageCellController]) {
