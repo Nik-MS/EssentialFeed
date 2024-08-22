@@ -15,8 +15,8 @@ final class ImageCommentsSnapshotTests: XCTestCase {
         
         sut.display(comments())
         
-        record(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "IMAGE_COMMENTS_LIGHT")
-        record(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "IMAGE_COMMENTS_DARK")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "IMAGE_COMMENTS_LIGHT")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "IMAGE_COMMENTS_DARK")
     }
     
     // MARK: - Helpers
@@ -36,9 +36,9 @@ final class ImageCommentsSnapshotTests: XCTestCase {
         return [
             ImageCommentCellController(
                 model: ImageCommentViewModel(
-                    message: "he East Side Gallery is an open-air gallery in Berlin. It consists of a series of murals painted directly on a 1,316 m long remnant of the Berlin Wall, located near the centre of Berlin, on Mühlenstraße in Friedrichshain-Kreuzberg. The gallery has official status as a Denkmal, or heritage-protected landmark.",
+                    message: "The East Side Gallery is an open-air gallery in Berlin. It consists of a series of murals painted directly on a 1,316 m long remnant of the Berlin Wall, located near the centre of Berlin, on Mühlenstraße in Friedrichshain-Kreuzberg. The gallery has official status as a Denkmal, or heritage-protected landmark.",
                     date: "1000 years ago",
-                    username: "a long long long username")
+                    username: "a long long long long long username")
             ),
             ImageCommentCellController(
                 model: ImageCommentViewModel(
