@@ -31,8 +31,12 @@ final class ImageCommentsSnapshotTests: XCTestCase {
         controller.refreshControl = nil
         return controller
     }
-        
+    
     private func comments() -> [CellController] {
+        cellControllers().map(CellController.init)
+    }
+        
+    private func cellControllers() -> [ImageCommentCellController] {
         return [
             ImageCommentCellController(
                 model: ImageCommentViewModel(

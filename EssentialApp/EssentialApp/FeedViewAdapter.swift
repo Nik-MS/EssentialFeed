@@ -22,7 +22,7 @@ final class FeedViewAdapter: ResourceView {
         controller?.display(viewModel.feed.map(composeCellController(with:)))
     }
     
-    private func composeCellController(with model: FeedImage) -> FeedImageCellController {
+    private func composeCellController(with model: FeedImage) -> CellController {
         let adapter: LoadResourcePresentationAdapter<Data, WeakRefVirtualProxy<FeedImageCellController>> = .init { [imageLoader] in
             imageLoader(model.url)
         }
@@ -44,7 +44,7 @@ final class FeedViewAdapter: ResourceView {
             }
         )
         
-        return view
+        return CellController(view)
     }
 }
 
