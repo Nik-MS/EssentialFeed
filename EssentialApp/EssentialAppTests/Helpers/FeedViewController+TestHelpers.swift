@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import EssentialFeediOS
+@testable import EssentialFeediOS
 
 extension ListViewController {
     func feedImageView(at row: Int) -> UITableViewCell? {
@@ -60,12 +60,16 @@ extension ListViewController {
         refreshControl?.simulatePullToRefresh()
     }
     
+    func simulateErrorViewTap() {
+        errorView.simulateTap()
+    }
+    
     var errorMessage: String? {
-        return errorView?.message
+        return errorView.message
     }
     
     var isShowingLoadingIndicator: Bool {
-        return refreshControl?.isRefreshing == true
+        return refreshControl?.isRefreshing == true 
     }
     
     func simulateAppearance() {
