@@ -27,7 +27,7 @@ struct SnapshotConfiguration {
             traitCollection: .init(mutations: { mutableTraits in
                 mutableTraits.forceTouchCapability = .available
                 mutableTraits.layoutDirection = .leftToRight
-                mutableTraits.preferredContentSizeCategory = .medium
+                mutableTraits.preferredContentSizeCategory = contentSize
                 mutableTraits.userInterfaceIdiom = .phone
                 mutableTraits.horizontalSizeClass = .compact
                 mutableTraits.verticalSizeClass = .regular
