@@ -32,7 +32,7 @@ class SceneDelegateTests: XCTestCase {
         let topController = rootNavigation?.topViewController
         
         XCTAssertNotNil(rootNavigation, "Expected a Nav Controller as root, got \(String(describing: root)) instead.")
-        XCTAssertTrue(topController is FeedViewController, "Expected a Feed Controller as top view controller, got \(String(describing: topController)) instead.")
+        XCTAssertTrue(topController is ListViewController, "Expected a Feed Controller as top view controller, got \(String(describing: topController)) instead.")
     }
     
     // MARK: - Helpers
