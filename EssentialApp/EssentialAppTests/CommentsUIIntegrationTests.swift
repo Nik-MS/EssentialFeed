@@ -120,6 +120,27 @@ final class CommentsUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.errorMessage, nil)
     }
     
+    func test_deinit_cancelsRunningRequest() {
+        var cancelCallCount = 0
+        
+        var sut: ListViewController?
+        // The autorelease pool created from the storyboard and from the test scope was preventing the SUT from deallocating.
+        // We create our own autoreleasepool so that we can have more control over its lifecycle.
+        autoreleasepool {
+            sut = CommentsUIComposer.commentsComposedWith {
+                PassthroughSubject<[ImageComment], Error>().handleEvents(receiveCancel: {
+                    cancelCallCount += 1
+                })
+                .eraseToAnyPublisher()
+            }
+            sut?.loadViewIfNeeded()
+        }
+        
+        XCTAssertEqual(cancelCallCount, 0)
+        sut = nil
+        XCTAssertEqual(cancelCallCount, 1)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: ListViewController, loader: LoaderSpy) {
