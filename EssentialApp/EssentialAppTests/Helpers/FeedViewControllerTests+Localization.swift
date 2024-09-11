@@ -16,4 +16,7 @@ extension FeedUIIntegrationTests {
     
     var loadError: String { LoadResourcePresenter<Any, DummyView>.loadError }
     var feedTitle: String { FeedPresenter.title }
+    
+    // MARK: - Comments
+    var commentsTitle: String { ImageCommentsPresenter.title }
 }
