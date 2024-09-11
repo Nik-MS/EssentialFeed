@@ -27,7 +27,6 @@
 		EA90D4E62C205B3500864028 /* FeedViewControllerTests+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA90D4E22C205B3500864028 /* FeedViewControllerTests+Assertions.swift */; };
 		EA90D4E72C205B3500864028 /* FeedViewControllerTests+FakeRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA90D4DD2C205B3400864028 /* FeedViewControllerTests+FakeRefreshControl.swift */; };
 		EA90D4E82C205B3500864028 /* FeedViewControllerTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA90D4E42C205B3500864028 /* FeedViewControllerTests+LoaderSpy.swift */; };
-		EA90D4E92C205B3500864028 /* FeedViewControllerTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA90D4DC2C205B3400864028 /* FeedViewControllerTests+Localization.swift */; };
 		EA90D4EA2C205B3500864028 /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA90D4DE2C205B3400864028 /* UIButton+TestHelpers.swift */; };
 		EA90D4EB2C205B3500864028 /* UIRefreshControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA90D4DF2C205B3400864028 /* UIRefreshControl+TestHelpers.swift */; };
 		EA90D4EC2C205B3500864028 /* ListViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA90D4E02C205B3500864028 /* ListViewController+TestHelpers.swift */; };
@@ -90,7 +89,6 @@
 		EA90D4D32C205AF800864028 /* FeedViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewAdapter.swift; sourceTree = "<group>"; };
 		EA90D4D42C205AF800864028 /* LoadResourcePresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresentationAdapter.swift; sourceTree = "<group>"; };
 		EA90D4D52C205AF800864028 /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
-		EA90D4DC2C205B3400864028 /* FeedViewControllerTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewControllerTests+Localization.swift"; sourceTree = "<group>"; };
 		EA90D4DD2C205B3400864028 /* FeedViewControllerTests+FakeRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewControllerTests+FakeRefreshControl.swift"; sourceTree = "<group>"; };
 		EA90D4DE2C205B3400864028 /* UIButton+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelpers.swift"; sourceTree = "<group>"; };
 		EA90D4DF2C205B3400864028 /* UIRefreshControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+TestHelpers.swift"; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				EA90D4E12C205B3500864028 /* FeedImageCell+TestHelpers.swift */,
-				EA90D4DC2C205B3400864028 /* FeedViewControllerTests+Localization.swift */,
 				EA90D4E22C205B3500864028 /* FeedViewControllerTests+Assertions.swift */,
 				EA90D4E42C205B3500864028 /* FeedViewControllerTests+LoaderSpy.swift */,
 				EA90D4E02C205B3500864028 /* ListViewController+TestHelpers.swift */,
@@ -351,7 +348,6 @@
 				EA90D4F12C205E6600864028 /* FeedAcceptanceTests.swift in Sources */,
 				EA90D4EA2C205B3500864028 /* UIButton+TestHelpers.swift in Sources */,
 				EA90D4EF2C205B4C00864028 /* FeedUIIntegrationTests.swift in Sources */,
-				EA90D4E92C205B3500864028 /* FeedViewControllerTests+Localization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
