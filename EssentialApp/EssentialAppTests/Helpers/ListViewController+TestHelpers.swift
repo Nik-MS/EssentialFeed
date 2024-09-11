@@ -14,6 +14,50 @@ extension ListViewController {
         tableView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
     }
     
+    func simulateUserInitiatedReload() {
+        refreshControl?.simulatePullToRefresh()
+    }
+    
+    func simulateErrorViewTap() {
+        errorView.simulateTap()
+    }
+    
+    var errorMessage: String? {
+        return errorView.message
+    }
+    
+    var isShowingLoadingIndicator: Bool {
+        return refreshControl?.isRefreshing == true
+    }
+    
+    func simulateAppearance() {
+        if !isViewLoaded {
+            loadViewIfNeeded()
+            replaceRefreshControlIfNeeded()
+        }
+        
+        beginAppearanceTransition(true, animated: false)
+        endAppearanceTransition()
+    }
+    
+    func replaceRefreshControlIfNeeded() {
+        let fakeRefreshControl = FakeRefreshContol()
+        
+        self.refreshControl?.allTargets.forEach { target in
+            self.refreshControl?.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach {
+                fakeRefreshControl.addTarget(target, action: Selector($0), for: .valueChanged)
+            }
+        }
+        
+        self.refreshControl = fakeRefreshControl
+        self.refreshControl = self.refreshControl
+    }
+}
+
+// MARK: - Feed
+
+extension ListViewController {
+    
     func feedImageView(at row: Int) -> UITableViewCell? {
         guard numberOfRenderedFeedImageViews() > row else { return nil }
         
@@ -62,42 +106,39 @@ extension ListViewController {
     
     private var feedImagesSection: Int { 0 }
     
-    func simulateUserInitiatedReload() {
-        refreshControl?.simulatePullToRefresh()
-    }
     
-    func simulateErrorViewTap() {
-        errorView.simulateTap()
-    }
-    
-    var errorMessage: String? {
-        return errorView.message
-    }
-    
-    var isShowingLoadingIndicator: Bool {
-        return refreshControl?.isRefreshing == true 
-    }
-    
-    func simulateAppearance() {
-        if !isViewLoaded {
-            loadViewIfNeeded()
-            replaceRefreshControlIfNeeded()
-        }
-        
-        beginAppearanceTransition(true, animated: false)
-        endAppearanceTransition()
-    }
-    
-    func replaceRefreshControlIfNeeded() {
-        let fakeRefreshControl = FakeRefreshContol()
-        
-        self.refreshControl?.allTargets.forEach { target in
-            self.refreshControl?.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach {
-                fakeRefreshControl.addTarget(target, action: Selector($0), for: .valueChanged)
-            }
-        }
-        
-        self.refreshControl = fakeRefreshControl
-        self.refreshControl = self.refreshControl
-    }
 }
+
+// MARK: - Comments
+
+extension ListViewController {
+    func numberOfRenderedComments() -> Int {
+        tableView.numberOfSections == 0 ? 0 :
+        tableView.numberOfRows(inSection: commentsSection)
+    }
+    
+    var commentsSection: Int { 0 }
+    
+    func commentMessage(at row: Int) -> String? {
+        commentView(at: row)?.messageLabel.text
+    }
+    
+    func commentDate(at row: Int) -> String? {
+        commentView(at: row)?.dateLabel.text
+    }
+    
+    func commentUsername(at row: Int) -> String? {
+        commentView(at: row)?.usernameLabel.text
+    }
+    
+    private func commentView(at row: Int) -> ImageCommentCell? {
+        guard numberOfRenderedFeedImageViews() > row else { return nil }
+        
+        let ds = tableView.dataSource
+        let indexPath = IndexPath(row: row, section: commentsSection)
+        return ds?.tableView(tableView, cellForRowAt: indexPath) as? ImageCommentCell
+    }
+    
+}
+
+
