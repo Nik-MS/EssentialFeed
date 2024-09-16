@@ -22,6 +22,12 @@ extension ListViewController {
         errorView.simulateTap()
     }
     
+    func simulateTapOnFeedImage(at row: Int) {
+        let delegate = tableView.delegate
+        let indexPath = IndexPath(row: row, section: feedImagesSection)
+        delegate?.tableView?(tableView, didSelectRowAt: indexPath)
+    }
+    
     var errorMessage: String? {
         return errorView.message
     }

@@ -97,6 +97,11 @@ public class ListViewController: UITableViewController, UITableViewDataSourcePre
         }
     }
     
+    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dl = cellController(at: indexPath)
+        dl?.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
+    }
+    
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { indexPath in
             let dsp = dataSource.itemIdentifier(for: indexPath)?.dataSourcePrefetching
