@@ -14,6 +14,18 @@ extension ListViewController {
         tableView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
     }
     
+    func numberOfRows(inSection section: Int) -> Int {
+        tableView.numberOfSections > section ? tableView.numberOfRows(inSection: section) : 0
+    }
+    
+    private func cell(row: Int, section: Int) -> UITableViewCell? {
+        guard numberOfRenderedFeedImageViews() > row else { return nil }
+        
+        let ds = tableView.dataSource
+        let indexPath = IndexPath(row: row, section: section)
+        return ds?.tableView(tableView, cellForRowAt: indexPath)
+    }
+    
     func simulateUserInitiatedReload() {
         refreshControl?.simulatePullToRefresh()
     }
@@ -65,11 +77,7 @@ extension ListViewController {
 extension ListViewController {
     
     func feedImageView(at row: Int) -> UITableViewCell? {
-        guard numberOfRenderedFeedImageViews() > row else { return nil }
-        
-        let ds = tableView.dataSource
-        let indexPath = IndexPath(row: row, section: feedImagesSection)
-        return ds?.tableView(tableView, cellForRowAt: indexPath)
+        cell(row: row, section: feedImagesSection)
     }
     
     @discardableResult
@@ -106,8 +114,7 @@ extension ListViewController {
     }
     
     func numberOfRenderedFeedImageViews() -> Int {
-        tableView.numberOfSections == 0 ? 0 :
-        tableView.numberOfRows(inSection: feedImagesSection)
+        numberOfRows(inSection: feedImagesSection)
     }
     
     private var feedImagesSection: Int { 0 }
@@ -119,8 +126,7 @@ extension ListViewController {
 
 extension ListViewController {
     func numberOfRenderedComments() -> Int {
-        tableView.numberOfSections == 0 ? 0 :
-        tableView.numberOfRows(inSection: commentsSection)
+        numberOfRows(inSection: commentsSection)
     }
     
     var commentsSection: Int { 0 }
@@ -138,13 +144,8 @@ extension ListViewController {
     }
     
     private func commentView(at row: Int) -> ImageCommentCell? {
-        guard numberOfRenderedFeedImageViews() > row else { return nil }
-        
-        let ds = tableView.dataSource
-        let indexPath = IndexPath(row: row, section: commentsSection)
-        return ds?.tableView(tableView, cellForRowAt: indexPath) as? ImageCommentCell
+        cell(row: row, section: commentsSection) as? ImageCommentCell
     }
-    
 }
 
 
