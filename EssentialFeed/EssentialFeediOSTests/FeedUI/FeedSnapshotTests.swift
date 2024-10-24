@@ -9,6 +9,8 @@ import XCTest
 @testable import EssentialFeed
 import EssentialFeediOS
 
+/* NOTE: Use iPhone 15 Pro for running Snapshot tests*/
+
 final class FeedSnapshot: XCTestCase {
     
     func test_feedWithContent() {
@@ -29,6 +31,15 @@ final class FeedSnapshot: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "FEED_WITH_FAILED_IMAGE_LOADING_LIGHT")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "FEED_WITH_FAILED_IMAGE_LOADING__DARK")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light, contentSize: .extraExtraExtraLarge)), named: "FEED_WITH_FAILED_IMAGE_LOADING_light_extraExtraExtraLarge")
+    }
+    
+    func test_feedWithLoadMoreIndicator() {
+        let sut = makeSUT()
+        
+        sut.display(feedWithLoadMoreIndicator())
+        
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "FEED_WITH_LOAD_MORE_INDICATOR_LIGHT")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "FEED_WITH_LOAD_MORE_INDICATOR_DARK")
     }
     
     // MARK: - Helpers
@@ -64,6 +75,17 @@ final class FeedSnapshot: XCTestCase {
             ImageStub(description: nil, location: "Cannon Street, London", image: nil),
             ImageStub(description: nil, location: "Brighton Seafront", image: nil)
         ]
+    }
+    
+    private func feedWithLoadMoreIndicator() -> [CellController] {
+        let loadMore = LoadMoreCellController()
+        loadMore.display(ResourceLoadingViewModel(isLoading: true))
+        
+        let stub = feedWithContent().first!
+        let feedImage = FeedImageCellController(viewModel: stub.viewModel, delegate: stub, selection: {  })
+        stub.controller = feedImage
+        
+        return [CellController(id: UUID(), feedImage), CellController(id: UUID(), loadMore)]
     }
 }
 
