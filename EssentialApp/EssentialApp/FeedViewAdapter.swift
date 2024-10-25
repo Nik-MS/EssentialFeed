@@ -20,8 +20,8 @@ final class FeedViewAdapter: ResourceView {
         self.selection = selection
     }
     
-    func display(_ viewModel: FeedViewModel) {
-        controller?.display(viewModel.feed.map(composeCellController(with:)))
+    func display(_ viewModel: Paginated<FeedImage>) {
+        controller?.display(viewModel.items.map(composeCellController(with:)))
     }
     
     private func composeCellController(with model: FeedImage) -> CellController {
