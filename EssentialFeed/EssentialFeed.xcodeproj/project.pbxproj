@@ -234,6 +234,9 @@
 		EA77AAFE2CCA72C200CCE124 /* FEED_WITH_LOAD_MORE_INDICATOR_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FEED_WITH_LOAD_MORE_INDICATOR_DARK.png; sourceTree = "<group>"; };
 		EA77AAFF2CCA72C200CCE124 /* FEED_WITH_LOAD_MORE_INDICATOR_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FEED_WITH_LOAD_MORE_INDICATOR_LIGHT.png; sourceTree = "<group>"; };
 		EA77AB002CCA77B700CCE124 /* LoadMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreCell.swift; sourceTree = "<group>"; };
+		EA77AB022CCBC56C00CCE124 /* FEED_WITH_LOAD_MORE_ERROR_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FEED_WITH_LOAD_MORE_ERROR_DARK.png; sourceTree = "<group>"; };
+		EA77AB032CCBC56C00CCE124 /* FEED_WITH_LOAD_MORE_ERROR_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FEED_WITH_LOAD_MORE_ERROR_LIGHT.png; sourceTree = "<group>"; };
+		EA77AB042CCBC56C00CCE124 /* FEED_WITH_LOAD_MORE_ERROR_light_extraExtraExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FEED_WITH_LOAD_MORE_ERROR_light_extraExtraExtraLarge.png; sourceTree = "<group>"; };
 		EA786C1A2BCFF5C90057AC77 /* FeedImageDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataStore.swift; sourceTree = "<group>"; };
 		EA786C1C2BCFF5D90057AC77 /* LocalFeedImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFeedImageDataLoader.swift; sourceTree = "<group>"; };
 		EA786C1E2BCFFAC70057AC77 /* FeedImageDataStorySpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataStorySpy.swift; sourceTree = "<group>"; };
@@ -677,6 +680,9 @@
 		EAC871402C74A52200FD9484 /* snapshots */ = {
 			isa = PBXGroup;
 			children = (
+				EA77AB022CCBC56C00CCE124 /* FEED_WITH_LOAD_MORE_ERROR_DARK.png */,
+				EA77AB032CCBC56C00CCE124 /* FEED_WITH_LOAD_MORE_ERROR_LIGHT.png */,
+				EA77AB042CCBC56C00CCE124 /* FEED_WITH_LOAD_MORE_ERROR_light_extraExtraExtraLarge.png */,
 				EA77AAFE2CCA72C200CCE124 /* FEED_WITH_LOAD_MORE_INDICATOR_DARK.png */,
 				EA77AAFF2CCA72C200CCE124 /* FEED_WITH_LOAD_MORE_INDICATOR_LIGHT.png */,
 				EAC8713C2C74A52200FD9484 /* FEED_WITH_CONTENT_LIGHT.png */,
