@@ -21,7 +21,13 @@ final class FeedViewAdapter: ResourceView {
     }
     
     func display(_ viewModel: Paginated<FeedImage>) {
-        controller?.display(viewModel.items.map(composeCellController(with:)))
+        let feed: [CellController] = viewModel.items.map(composeCellController(with:))
+        let loadMore = LoadMoreCellController {
+            viewModel.loadMore?({ _ in })
+        }
+        
+        let loadMoreSection = [CellController(id: UUID(), loadMore)]
+        controller?.display(feed, loadMoreSection)
     }
     
     private func composeCellController(with model: FeedImage) -> CellController {

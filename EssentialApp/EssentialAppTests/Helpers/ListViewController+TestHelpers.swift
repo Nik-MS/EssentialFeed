@@ -19,7 +19,7 @@ extension ListViewController {
     }
     
     private func cell(row: Int, section: Int) -> UITableViewCell? {
-        guard numberOfRenderedFeedImageViews() > row else { return nil }
+        guard numberOfRows(inSection: section) > row else { return nil }
         
         let ds = tableView.dataSource
         let indexPath = IndexPath(row: row, section: section)
@@ -32,6 +32,13 @@ extension ListViewController {
     
     func simulateErrorViewTap() {
         errorView.simulateTap()
+    }
+    
+    func simulateLoadMoreFeedAction() {
+        guard let view = cell(row: 0, section: feedLoadMoreSection) else { return }
+        let delegate = tableView.delegate
+        let indexPath = IndexPath(row: 0, section: feedLoadMoreSection)
+        delegate?.tableView?(tableView, willDisplay: view, forRowAt: indexPath)
     }
     
     func simulateTapOnFeedImage(at row: Int) {
@@ -118,6 +125,7 @@ extension ListViewController {
     }
     
     private var feedImagesSection: Int { 0 }
+    private var feedLoadMoreSection: Int { 1 }
     
     
 }
