@@ -25,6 +25,14 @@ final public class LoadMoreCellController: NSObject, UITableViewDataSource, UITa
     }
     
     public func tableView(_ tableView: UITableView, willDisplay: UITableViewCell, forRowAt indexPath: IndexPath) {
+        reloadIfNeeded()
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        reloadIfNeeded()
+    }
+    
+    func reloadIfNeeded() {
         guard !cell.isLoading else { return }
         callback()
     }
