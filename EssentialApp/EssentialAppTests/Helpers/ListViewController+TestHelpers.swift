@@ -34,13 +34,6 @@ extension ListViewController {
         errorView.simulateTap()
     }
     
-    func simulateLoadMoreFeedAction() {
-        guard let view = cell(row: 0, section: feedLoadMoreSection) else { return }
-        let delegate = tableView.delegate
-        let indexPath = IndexPath(row: 0, section: feedLoadMoreSection)
-        delegate?.tableView?(tableView, willDisplay: view, forRowAt: indexPath)
-    }
-    
     func simulateTapOnFeedImage(at row: Int) {
         let delegate = tableView.delegate
         let indexPath = IndexPath(row: row, section: feedImagesSection)
@@ -125,7 +118,16 @@ extension ListViewController {
     }
     
     private var feedImagesSection: Int { 0 }
+}
+
+// MARK: - Load More Feed
+
+extension ListViewController {
     private var feedLoadMoreSection: Int { 1 }
+    
+    var loadMoreErrorMessage: String? {
+        return loadMoreFeedCell()?.message
+    }
     
     var isShowingLoadMoreFeedIndicator: Bool {
         return loadMoreFeedCell()?.isLoading == true
@@ -133,6 +135,13 @@ extension ListViewController {
     
     private func loadMoreFeedCell() -> LoadMoreCell? {
         cell(row: 0, section: feedLoadMoreSection) as? LoadMoreCell
+    }
+    
+    func simulateLoadMoreFeedAction() {
+        guard let view = cell(row: 0, section: feedLoadMoreSection) else { return }
+        let delegate = tableView.delegate
+        let indexPath = IndexPath(row: 0, section: feedLoadMoreSection)
+        delegate?.tableView?(tableView, willDisplay: view, forRowAt: indexPath)
     }
 }
 
