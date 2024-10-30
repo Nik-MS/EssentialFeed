@@ -48,7 +48,7 @@ extension FeedUIIntegrationTests {
             return publisher.eraseToAnyPublisher()
         }
         
-        func completeLoadMore(with feed: [FeedImage] = [], lastPage: Bool = false, at index: Int) {
+        func completeLoadMore(with feed: [FeedImage] = [], lastPage: Bool = false, at index: Int = 0) {
             loadMoreRequests[index].send(Paginated(
                 items: feed,
                 loadMorePublisher: lastPage ? nil : { [weak self] in
