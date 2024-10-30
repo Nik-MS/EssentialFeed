@@ -77,7 +77,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func makeRemoteFeedLoaderWithLocalFallback() -> AnyPublisher<Paginated<FeedImage>, Swift.Error> {
         httpClient
-            .getPublisher(for: FeedEndpoint.get.url(baseURL: baseURL))
+            .getPublisher(for: FeedEndpoint.get().url(baseURL: baseURL))
             .tryMap(FeedItemsMapper.map(_:from:))
             .caching(to: localFeedLoader)
             .fallback(to: localFeedLoader.loadPublisher)
