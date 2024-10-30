@@ -127,7 +127,13 @@ extension ListViewController {
     private var feedImagesSection: Int { 0 }
     private var feedLoadMoreSection: Int { 1 }
     
+    var isShowingLoadMoreFeedIndicator: Bool {
+        return loadMoreFeedCell()?.isLoading == true
+    }
     
+    private func loadMoreFeedCell() -> LoadMoreCell? {
+        cell(row: 0, section: feedLoadMoreSection) as? LoadMoreCell
+    }
 }
 
 // MARK: - Comments
