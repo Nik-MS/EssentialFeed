@@ -75,14 +75,43 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         localFeedLoader.validateCache { _ in }
     }
     
-    private func makeRemoteFeedLoaderWithLocalFallback() -> AnyPublisher<[FeedImage], Swift.Error> {
-        httpClient
-            .getPublisher(for: FeedEndpoint.get.url(baseURL: baseURL))
-            .tryMap(FeedItemsMapper.map(_:from:))
-            .caching(to: localFeedLoader)
-            .fallback(to: localFeedLoader.loadPublisher)
+    private func makeFirstPage(items: [FeedImage]) -> Paginated<FeedImage> {
+        makePage(items: items, last: items.last)
     }
     
+    private func makePage(items: [FeedImage], last: FeedImage?) -> Paginated<FeedImage> {
+        return Paginated(items: items, loadMorePublisher: last.map { last in
+            { self.makeRemoteLoadMoreLoader(last: last)}
+        })
+    }
+    
+    private func makeRemoteFeedLoaderWithLocalFallback() -> AnyPublisher<Paginated<FeedImage>, Swift.Error> {
+        makeRemoteFeedLoader()
+            .caching(to: localFeedLoader)
+            .fallback(to: localFeedLoader.loadPublisher)
+            .map(makeFirstPage(items:))
+            .eraseToAnyPublisher()
+    }
+    
+    private func makeRemoteLoadMoreLoader(last: FeedImage?) -> AnyPublisher<Paginated<FeedImage>, Error> {
+        makeRemoteFeedLoader(after: last)
+            .zip(localFeedLoader.loadPublisher())
+            .map { newItems, cachedItems in
+                (cachedItems + newItems, newItems.last)
+            }
+            .map(makePage)
+            .caching(to: localFeedLoader)
+            .eraseToAnyPublisher()
+    }
+    
+    private func makeRemoteFeedLoader(after: FeedImage? = nil) -> AnyPublisher<[FeedImage], Error> {
+        let url = FeedEndpoint.get(after: after).url(baseURL: baseURL)
+        return httpClient
+            .getPublisher(for: url)
+            .tryMap(FeedItemsMapper.map)
+            .eraseToAnyPublisher()
+    }
+
     private func makeLocalImageLoaderWithRemoteFallback(url: URL) -> FeedImageDataLoader.Publisher {
         let remoteImageLoader = RemoteFeedImageDataLoader(client: httpClient)
         let localImageLoader = LocalFeedImageDataLoader(store: store)
