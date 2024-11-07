@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA0936ED2CDCEE1800320837 /* NullStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0936EC2CDCEE1600320837 /* NullStore.swift */; };
 		EA0C47822C11DBD0005514E5 /* FeedLoaderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0C47812C11DBD0005514E5 /* FeedLoaderStub.swift */; };
 		EA1EC9E02BFF73D0007F962B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1EC9DF2BFF73D0007F962B /* AppDelegate.swift */; };
 		EA1EC9E22BFF73D0007F962B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1EC9E12BFF73D0007F962B /* SceneDelegate.swift */; };
@@ -70,6 +71,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EA0936EC2CDCEE1600320837 /* NullStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullStore.swift; sourceTree = "<group>"; };
 		EA0C47812C11DBD0005514E5 /* FeedLoaderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderStub.swift; sourceTree = "<group>"; };
 		EA1EC9DC2BFF73D0007F962B /* EssentialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA1EC9DF2BFF73D0007F962B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 		EA1EC9DE2BFF73D0007F962B /* EssentialApp */ = {
 			isa = PBXGroup;
 			children = (
+				EA0936EC2CDCEE1600320837 /* NullStore.swift */,
 				EA1EC9DF2BFF73D0007F962B /* AppDelegate.swift */,
 				EA1EC9E12BFF73D0007F962B /* SceneDelegate.swift */,
 				EA87C0B62C3B0885009099B5 /* CombineHelpers.swift */,
@@ -314,6 +317,7 @@
 			files = (
 				EA1EC9E42BFF73D0007F962B /* ViewController.swift in Sources */,
 				EA1EC9E02BFF73D0007F962B /* AppDelegate.swift in Sources */,
+				EA0936ED2CDCEE1800320837 /* NullStore.swift in Sources */,
 				EA87C0B72C3B0885009099B5 /* CombineHelpers.swift in Sources */,
 				EA1EC9E22BFF73D0007F962B /* SceneDelegate.swift in Sources */,
 				EA87EC9F2C91CB91007381E8 /* CommentsUIComposer.swift in Sources */,
