@@ -231,7 +231,13 @@ class FeedUIIntegrationTests: XCTestCase {
         
         sut.simulateFeedImageViewNotVisible(at: 0)
         sut.simulateFeedImageViewVisible(at: 0)
-        XCTAssertEqual(loader.loadedImageURLs, [image0.url, image0.url, image0.url], "Expected Expected third request when visible after canceling previous complete")
+        XCTAssertEqual(loader.loadedImageURLs, [image0.url, image0.url, image0.url], "Expected third request when visible after canceling previous complete")
+        
+        sut.simulateLoadMoreFeedAction()
+        loader.completeLoadMore(with: [image0, makeImage()])
+        sut.simulateFeedImageViewVisible(at: 0)
+        XCTAssertEqual(loader.loadedImageURLs, [image0.url, image0.url, image0.url], "Expected no request until previous complete")
+        
     }
     
     func test_feedImageViewLoadingIndicator_isVisibleWhileLoadingImage() {
